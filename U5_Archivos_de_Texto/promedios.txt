@@ -1,0 +1,5 @@
+Nombre           Promedio      Condicion
+----------------------------------------
+Lopez Javier        73.00       Aprobado
+Garcia Ana          90.00       Aprobado
+Farias Daniel       61.00       Aprobado

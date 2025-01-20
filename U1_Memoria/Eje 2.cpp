@@ -11,26 +11,20 @@ int main() {
 	srand(time(0));
 	int n;
 	cin >> n;
-	int *p = new int [n];
+	int *v = new int [n];
 	
 	for(int i=0;i<n;i++) { 	
-		p[i] = rand()%501 + 1000;
-	}
-	
-	int mayor = 0, pos;
-	
-	for(int i=0;i<n;i++) { 
-		if(p[i] > mayor){
-		mayor = p[i];
-		pos = i;
-		}
+		v[i] = rand()%501 + 1000;
 	}
 	for(int i=0;i<n;i++) { 
-		cout << p[i] << "  -  ";
+		cout << *(v+i) << "  " << (v+i) << endl;
 	}
-	cout << endl;
-	cout << &p[mayor]<< "   " << mayor << "   " << pos;
-	delete []p;
+	int *mayor = v;
+	for(int i=0;i<n;i++) { 
+		if(v[i] > *mayor) mayor = (v+i);
+	}
+	cout << "El mayor es: " << *mayor << "  " << mayor;
+	delete []v;
 	return 0;
 }
 

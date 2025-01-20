@@ -1,4 +1,5 @@
 #include <iostream>
+#include <ctime>
 using namespace std;
 /*Escriba una función que utilice punteros para buscar y retornar la dirección de un entero dentro de un arreglo. Se
 pasan como parámetros el arreglo, su tamaño y el entero a buscar. Si el dato no se encuentra, debe retornar
@@ -16,6 +17,7 @@ int *funcion (int *p, int n, int entero){
 }
 
 int main() {
+	srand(time(0));
 	int n, entero;
 	cout << "Inserte el tamaño del vector: "; cin >> n;
 	
@@ -30,10 +32,12 @@ int main() {
 	cout << "Inserte el entero a buscar: "; cin >> entero;
 	int *aux = funcion(p, n, entero);
 	if (aux != nullptr){
-		cout << aux << endl;
+		cout << "Su dirección de memoria es: " << aux << " en el indice " << aux - p << endl;
 	}else{
 		cout << "No se ha encontrado el valor en el array"<<endl;
 	}
+	// cuando la funcion no devuelve nullptr el indice del elemento encontrado se hace restando el puntero base menos el puntero encontrado
+	delete []p;
 	return 0;
 }
 

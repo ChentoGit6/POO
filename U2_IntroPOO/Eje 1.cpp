@@ -11,7 +11,7 @@ altura respectivamente.
 intente compilar nuevamente el programa. ¿Puede explicar por qué se produce un error? Proponga una
 solución.
 */
-class cilindro {
+class Cilindro {
 private: 
 	float m_rad, m_alt;
 public: 
@@ -20,9 +20,8 @@ public:
 	};
 	float obtener_vol();
 };
-float cilindro::obtener_vol(){
-	float vol = 3.14 * m_rad * m_rad * m_alt;
-	return vol;
+float Cilindro::obtener_vol(){
+	return 3.14 * m_rad * m_rad * m_alt;
 }
 int main() {
 	float rad, alt;
@@ -30,11 +29,11 @@ int main() {
 	cout << "  Radio: "; cin >> rad;
 	cout << "  Altura: "; cin >> alt;
 	
-	cilindro c1;
+	Cilindro c1;
 	c1.asigdatos(rad, alt);
 	cout << "El volúmen del cilindro 1 es: "<< c1.obtener_vol() << endl;
 	
-	cilindro c2;
+	Cilindro c2;
 	c2.asigdatos(5.3, 10.2);
 	cout << "El volúmen del cilindro 2 es: "<< c2.obtener_vol() << endl;
 	return 0;

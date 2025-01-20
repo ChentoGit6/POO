@@ -1,5 +1,3 @@
-#include <iostream>
-using namespace std;
 /*Proponga un struct Punto con atributos para definir un punto en el plano (coordenadas x e y). Luego, complete
 la clase RectaExplicita para definir la ecuación explícita de la recta a partir de dos puntos: y = mx + b. La
 declaración de dicha clase se muestra en el recuadro siguiente:
@@ -25,43 +23,55 @@ parecidos en lugar de exactamente iguales (los cálculos con floats tienen errore
 menores a 1e-6)
 */
 
+#include <iostream>
+#include <cmath>
+using namespace std;
+
 struct Punto {
-	int x, y;
+	float x, y;
 };
+
 class RectaExplicita {
 private:
 	float m, b;
 public:
-	RectaExplicita(Punto P, Punto Q) : m((Q.y-P.y)*1.0/(Q.x-P.x)), b(P.y - ((Q.y-P.y)/(Q.x-P.x))*1.0*P.x){};
-	float verM()const &{return m;};
-	float verB()const &{return b;};
-	string obtenerEcuacion(){
+	RectaExplicita(Punto P, Punto Q) : m((Q.y-P.y)/(Q.x-P.x)), b(P.y - ((Q.y-P.y)/(Q.x-P.x))*P.x){};
+	float VerM()const &{return m;};
+	float VerB()const &{return b;};
+	string ObtenerEcuacion(){
 		string m1 = to_string(m);
 		string b1 = to_string(b);
 		return "y = " + m1 + "x + " + b1;
 	};
-	bool pertenece(Punto P){
-		if (P.y == m*P.x + b){
+	bool Pertenece(Punto T){
+		if (fabs (m*T.x + b - T.y) < 1e-6){
 			return true;
 		}
 		return false;
 	};
-	
 };
 
 int main() {
 	Punto p,q,t;
-	p.x = 5;
-	p.y = 3;
-	q.x = 2;
-	q.y = 2;
-	t.x = 1;
-	t.y = 1;
+	cout << "Declare dos puntos para armar la recta:" << endl;
+	cout << " Punto P:" << endl; 
+	cout << "         x = "; cin >> p.x; 
+	cout << "         y = "; cin >> p.y;
+	cout << " Punto Q:" << endl; 
+	cout << "         x = "; cin >> q.x; 
+	cout << "         y = "; cin >> q.y;
 	RectaExplicita f(p, q);
-	cout << f.obtenerEcuacion()<<endl;
-	cout << f.pertenece(t)<<endl;
-	cout << f.verM()<<endl;
-	cout << f.verB();
+	cout << f.ObtenerEcuacion()<<endl;
+	cout << "Declare un punto para ver si pertenece a la recta:" << endl;
+	cout << " Punto T:" << endl; 
+	cout << "         x = "; cin >> t.x; 
+	cout << "         y = "; cin >> t.y;
+	if (f.Pertenece(t) == 1){
+		cout << "El punto pertenece a la recta";
+	} else {
+		cout << "El punto no pertenece a la recta";
+	}
+	cout << endl;
 	return 0;
 }
 
